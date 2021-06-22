@@ -1,3 +1,5 @@
+client-prometheus-keycloak-secret
+.env
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
