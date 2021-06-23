@@ -14,7 +14,7 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-import br.com.zup.orangetalents.transacoes.dto.response.TransacaoEvento;
+import br.com.zup.orangetalents.transacoes.listener.TransacaoEvento;
 
 @Configuration
 @EnableKafka

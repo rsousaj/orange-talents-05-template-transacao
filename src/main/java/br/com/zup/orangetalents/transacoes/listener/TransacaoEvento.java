@@ -1,4 +1,4 @@
-package br.com.zup.orangetalents.transacoes.dto.response;
+package br.com.zup.orangetalents.transacoes.listener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,14 +15,12 @@ public class TransacaoEvento {
 
 	private String id;
 	private BigDecimal valor;
-	private EstabelecimentoEveto estabelecimento;
+	private EstabelecimentoEvento estabelecimento;
 	private CartaoEvento cartao;
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime efetivadaEm;
 
-	public TransacaoEvento() {
-		
-	}
+	public TransacaoEvento() {	}
 	
 	public TransacaoEvento(String id, BigDecimal valor) {
 		this.id = id;
@@ -37,7 +35,7 @@ public class TransacaoEvento {
 		return valor;
 	}
 	
-	public EstabelecimentoEveto getEstabelecimento() {
+	public EstabelecimentoEvento getEstabelecimento() {
 		return this.estabelecimento;
 	}
 	
@@ -57,21 +55,13 @@ public class TransacaoEvento {
 				this.getEstabelecimento().getCidade(), 
 				this.getEstabelecimento().getEndereco());
 		
-		return new Transacao(UUID.fromString(this.id), valor, estabelecimento, cartao);
+		return new Transacao(UUID.fromString(this.id), valor, estabelecimento, cartao, this.efetivadaEm);
 	}
 	
-	private static class EstabelecimentoEveto {
+	private static class EstabelecimentoEvento {
 		private String nome;
 		private String cidade;
 		private String endereco;
-		
-		public EstabelecimentoEveto() { }
-
-		public EstabelecimentoEveto(String nome, String cidade, String endereco) {
-			this.nome = nome;
-			this.cidade = cidade;
-			this.endereco = endereco;
-		}
 
 		public String getNome() {
 			return nome;
@@ -94,13 +84,6 @@ public class TransacaoEvento {
 	private static class CartaoEvento {
 		private String id;
 		private String email;
-		
-		public CartaoEvento() { }
-
-		public CartaoEvento(String id, String email) {
-			this.id = id;
-			this.email = email;
-		}
 
 		public String getId() {
 			return id;
